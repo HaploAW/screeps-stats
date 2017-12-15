@@ -21,7 +21,7 @@ class ScreepsConsole(screepsapi.Socket):
         self.subscribe_user('console')
         self.subscribe_user('cpu')
 
-    def process_log(self, ws, message):
+    def process_log(self, ws, message, shard):
 
         message_soup = BeautifulSoup(message,  "lxml")
 
@@ -63,7 +63,7 @@ class ScreepsConsole(screepsapi.Socket):
         body['message'] = message_text.replace("\t", ' ')
         res = self.es.index(index="screeps-console-" + time.strftime("%Y_%m"), doc_type="log", body=body)
 
-    def process_results(self, ws, message):
+    def process_results(self, ws, message, shard):
         body = {
             'timestamp': datetime.now(),
             'message': message,
@@ -71,7 +71,7 @@ class ScreepsConsole(screepsapi.Socket):
         }
         res = self.es.index(index="screeps-console-" + time.strftime("%Y_%m"), doc_type="log", body=body)
 
-    def process_error(self, ws, message):
+    def process_error(self, ws, message, shard):
         body = {
             'timestamp': datetime.now(),
             'message': message,
