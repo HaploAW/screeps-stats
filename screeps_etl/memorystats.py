@@ -19,16 +19,15 @@ class ScreepsMemoryStats():
     ELASTICSEARCH_HOST = 'elasticsearch' if 'ELASTICSEARCH' in os.environ else 'localhost'
     es = Elasticsearch([ELASTICSEARCH_HOST])
 
-    def __init__(self, u=None, p=None, ptr=False):
-        self.user = u
-        self.password = p
+    def __init__(self, token=None, ptr=False):
+        self.token = token
         self.ptr = ptr
         self.processed_ticks = []
 
     def getScreepsAPI(self):
         if not self.__api:
             settings = getSettings()
-            self.__api = screepsapi.API(u=settings['screeps_username'],p=settings['screeps_password'],ptr=settings['screeps_ptr'])
+            self.__api = screepsapi.API(token=settings['screeps_token'], ptr=settings['screeps_ptr'])
         return self.__api
     __api = False
 
@@ -247,5 +246,5 @@ class ScreepsMemoryStats():
 
 if __name__ == "__main__":
     settings = getSettings()
-    screepsconsole = ScreepsMemoryStats(u=settings['screeps_username'], p=settings['screeps_password'], ptr=settings['screeps_ptr'])
+    screepsconsole = ScreepsMemoryStats(token=settings['screeps_token'], ptr=settings['screeps_ptr'])
     screepsconsole.run_forever()

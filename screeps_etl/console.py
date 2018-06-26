@@ -98,5 +98,5 @@ class ScreepsConsole(screepsapi.Socket):
 if __name__ == "__main__":
     opts, args = getopt.getopt(sys.argv[1:], "hi:o:",["ifile=","ofile="])
     settings = getSettings()
-    screepsconsole = ScreepsConsole(user=settings['screeps_username'], password=settings['screeps_password'], ptr=settings['screeps_ptr'])
+    screepsconsole = ScreepsConsole(token=settings['screeps_token'], ptr=settings['screeps_ptr'])
     screepsconsole.start()

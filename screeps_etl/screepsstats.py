@@ -61,7 +61,7 @@ class WebsocketProcess(multiprocessing.Process):
         logger = logging.getLogger("ScreepsStats")
         logger.setLevel(logging.WARN)
         settings = getSettings()
-        screepsconsole = ScreepsConsole(user=settings['screeps_username'], password=settings['screeps_password'], ptr=settings['screeps_ptr'])
+        screepsconsole = ScreepsConsole(token=settings['screeps_token'], ptr=settings['screeps_ptr'])
         screepsconsole.start()
 
 
@@ -72,7 +72,7 @@ class APIProcess(multiprocessing.Process):
         logger = logging.getLogger("ScreepsStats")
         logger.setLevel(logging.WARN)
         settings = getSettings()
-        screepsapi = ScreepsMemoryStats(u=settings['screeps_username'], p=settings['screeps_password'], ptr=settings['screeps_ptr'])
+        screepsapi = ScreepsMemoryStats(token=settings['screeps_token'], ptr=settings['screeps_ptr'])
         screepsapi.run_forever()
 
 

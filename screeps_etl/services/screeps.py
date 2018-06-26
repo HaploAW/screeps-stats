@@ -9,7 +9,7 @@ allianceUrl = 'http://www.leagueofautomatednations.com/alliances.js'
 
 def getScreepsAPI():
     settings = getSettings()
-    return screepsapi.API(u=settings['screeps_username'],p=settings['screeps_password'],ptr=settings['screeps_ptr'])
+    return screepsapi.API(token=settings['screeps_token'], ptr=settings['screeps_ptr'])
 
 
 @cache.cache(expire=3600)
