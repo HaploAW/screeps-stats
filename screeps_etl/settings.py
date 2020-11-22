@@ -18,9 +18,8 @@ def getSettings():
         if not os.path.isfile(path):
             path = '/vagrant/.screeps_settings.yaml'
 
-
         if not os.path.isfile(path):
-            print 'no settings file found'
+            print('no settings file found')
             sys.exit(-1)
             return False
 

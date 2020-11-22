@@ -39,7 +39,10 @@ class ScreepsMemoryStats():
 
             # Market data changes much more rarely so process it less often.
             if not lastrun or lastrun >= 20:
-                self.collectMarketHistory()
+                
+                # TODO Fix it
+                #self.collectMarketHistory()
+
                 lastrun = 1
                 # don't pause before next run as market collection adds its own
                 # delays
@@ -233,7 +236,7 @@ class ScreepsMemoryStats():
 
     def clean(self, datadict):
         newdict = {}
-        for key, value in datadict.iteritems():
+        for key, value in datadict.items():
             if key == 'tick':
                 newdict[key] = int(value)
             else:
